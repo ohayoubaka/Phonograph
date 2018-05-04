@@ -105,8 +105,15 @@ public final class PreferenceUtil {
         mPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
     }
 
+    @StyleRes
     public int getGeneralTheme() {
-        return getThemeResFromPrefValue(mPreferences.getString(GENERAL_THEME, ""));
+        return getThemeResFromPrefValue(mPreferences.getString(GENERAL_THEME, "light"));
+    }
+
+    public void setGeneralTheme(String theme) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(GENERAL_THEME, theme);
+        editor.commit();
     }
 
     @StyleRes
@@ -215,6 +222,12 @@ public final class PreferenceUtil {
         return mPreferences.getString(ARTIST_SORT_ORDER, SortOrder.ArtistSortOrder.ARTIST_A_Z);
     }
 
+    public void setArtistSortOrder(final String sortOrder) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(ARTIST_SORT_ORDER, sortOrder);
+        editor.commit();
+    }
+
     public final String getArtistSongSortOrder() {
         return mPreferences.getString(ARTIST_SONG_SORT_ORDER, SortOrder.ArtistSongSortOrder.SONG_A_Z);
     }
@@ -227,12 +240,24 @@ public final class PreferenceUtil {
         return mPreferences.getString(ALBUM_SORT_ORDER, SortOrder.AlbumSortOrder.ALBUM_A_Z);
     }
 
+    public void setAlbumSortOrder(final String sortOrder) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(ALBUM_SORT_ORDER, sortOrder);
+        editor.commit();
+    }
+
     public final String getAlbumSongSortOrder() {
         return mPreferences.getString(ALBUM_SONG_SORT_ORDER, SortOrder.AlbumSongSortOrder.SONG_TRACK_LIST);
     }
 
     public final String getSongSortOrder() {
         return mPreferences.getString(SONG_SORT_ORDER, SortOrder.SongSortOrder.SONG_A_Z);
+    }
+
+    public void setSongSortOrder(final String sortOrder) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(SONG_SORT_ORDER, sortOrder);
+        editor.commit();
     }
 
     public final String getGenreSortOrder() {
